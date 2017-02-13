@@ -1,0 +1,47 @@
+{% extends "_layouts/cp" %}
+{% set centered = true %}
+
+{% set referrals = craft.simplereferrals.getAllReferrals %}
+{% set title = "Simple Referrals"|t %}
+
+{% set content %}
+
+    <p id="noreferrals"{% if referrals|length %} class="hidden"{% endif %}>
+        {{ "No referrals exist yet."|t }}
+    </p>
+
+    {% if referrals|length %}
+        <table id="referrals" class="data">
+            <thead>
+                <th scope="col">{{ "Tracking Code"|t }}</th>
+                <th scope="col">{{ "Referrer"|t }}</th>
+                <th class="thin"></th>
+            </thead>
+            <tbody>
+
+                {% for referral in referrals %}
+                    <tr data-id="{{ referrer.id }}" data-name="{{ referral.tracking_code|t }}">
+                        <td><a href="{{ url('simplereferrals/referrals/'~referral.id) }}">{{ referral.tracking_code }}</a></td>
+                        <td><a href="{{ url('simplereferrals/referrals/'~referral.id) }}">{{ referral.referrer }}</a></td>
+                        <td><a class="delete icon" title="{{ 'Delete'|t }}"></a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+
+    <div class="buttons">
+        <a href="{{ url('simplereferral/referrals/new') }}" class="btn add icon">{{ "New Referral"|t }}</a>
+    </div>
+
+{% endset %}
+
+{% set js %}
+    new Craft.AdminTable({
+        tableSelector: '#referrals',
+        noObjectsSelector: '#noreferrals',
+        deleteAction: 'simplereferral/referrals/deleteReferral'
+    });
+{% endset %}
+{% includeJs js %}
