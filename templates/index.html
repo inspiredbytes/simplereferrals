@@ -32,7 +32,7 @@
     {% endif %}
 
     <div class="buttons">
-        <a href="{{ url('simplereferral/referrals/new') }}" class="btn add icon">{{ "New Referral"|t }}</a>
+        <a href="{{ url('simplereferrals/referrals/new') }}" class="btn add icon">{{ "New Referral"|t }}</a>
     </div>
 
 {% endset %}
@@ -41,7 +41,7 @@
     new Craft.AdminTable({
         tableSelector: '#referrals',
         noObjectsSelector: '#noreferrals',
-        deleteAction: 'simplereferral/referrals/deleteReferral'
+        deleteAction: 'simplereferrals/referrals/deleteReferral'
     });
 {% endset %}
 {% includeJs js %}

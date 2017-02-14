@@ -2,11 +2,11 @@
 
 namespace Craft;
 
-class CocktailRecipesPlugin extends BasePlugin
+class SimpleReferralsPlugin extends BasePlugin
 {
     public function getName()
     {
-        return Craft::t('Cocktail Recipes');
+        return Craft::t('Simple Referrals');
     }
 
     public function getVersion()
